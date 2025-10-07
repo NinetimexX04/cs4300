@@ -1,0 +1,17 @@
+{% extends 'bookings/base.html' %}
+{% block title %}My Bookings{% endblock %}
+{% block content %}
+<h2 class="mb-3">My Booking History</h2>
+{% if bookings %}
+  <div class="list-group">
+    {% for b in bookings %}
+      <div class="list-group-item bg-dark text-light border-secondary">
+        <strong>{{ b.movie.title }}</strong> — Seat <span class="text-info">{{ b.seat.seat_number }}</span>
+        <div class="text-secondary small">Booked at {{ b.booked_at }}</div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="alert alert-secondary">No bookings yet.</div>
+{% endif %}
+{% endblock %}

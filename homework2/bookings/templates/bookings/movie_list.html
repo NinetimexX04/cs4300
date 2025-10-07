@@ -1,0 +1,20 @@
+{% extends 'bookings/base.html' %}
+{% block title %}Movies{% endblock %}
+{% block content %}
+<h2 class="mb-3">Available Movies</h2>
+{% if movies %}
+  <ul class="list-group">
+    {% for m in movies %}
+      <li class="list-group-item bg-dark text-light border-secondary d-flex justify-content-between">
+        <div>
+          <strong>{{ m.title }}</strong>
+          {% if m.description %}<div class="text-secondary small">{{ m.description }}</div>{% endif %}
+        </div>
+        <a class="btn btn-primary" href="{% url 'book_seat' m.id %}">Book Now</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <div class="alert alert-secondary">No movies yet. Add some in <a class="alert-link" href="/admin/">Admin</a>.</div>
+{% endif %}
+{% endblock %}
